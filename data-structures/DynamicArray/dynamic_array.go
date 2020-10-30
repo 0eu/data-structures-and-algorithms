@@ -42,12 +42,15 @@ type DynamicArray struct {
 // Add appends an element to the end of an array. In case, there is insufficient
 // capacity it will double a capacity of an array to keep append time complexity
 // constant.
-func (d *DynamicArray) Add(element interface{}) {
+func (d *DynamicArray) Add(element interface{}) error {
 	if d.length+1 >= d.capacity {
-		d.resize()
+		if err := d.resize(); err != nil {
+			return err
+		}
 	}
 	d.container[d.length] = element
 	d.length++
+	return nil
 }
 
 func (d *DynamicArray) resize() error {
