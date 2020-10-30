@@ -2,20 +2,20 @@
 The purpose of the repository is to learn more about implementation variety algorithms and data structures.
 
 ## Data Structures
-- [] Dynamic Array
-- [] Linked List 
-- [] Stack 
-- [] Queue 
-- [] Priority Queue 
-- [] Union Find 
-- [] Binary Search Tree
-- [] Hash Table
-- [] AVL Tree 
-- [] Indexed Priority Queue
-- [] Sparses Tables 
+- [ ] Dynamic Array
+- [ ] Linked List 
+- [ ] Stack 
+- [ ] Queue 
+- [ ] Priority Queue 
+- [ ] Union Find 
+- [ ] Binary Search Tree
+- [ ] Hash Table
+- [ ] AVL Tree 
+- [ ] Indexed Priority Queue
+- [ ] Sparses Tables 
 
 ## Algorithms 
-- [] Breadth-First Search
+- [ ] Breadth-First Search
 
 
 ## Resources
