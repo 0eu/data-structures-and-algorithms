@@ -24,6 +24,7 @@ var (
 // Array is an
 type Array interface {
 	Add(int32) error
+	Capacity() int32
 	Find(interface{}) (int32, error)
 	Get(int32) (interface{}, error)
 	RemoveAt(int32) error
@@ -43,7 +44,7 @@ type DynamicArray struct {
 // capacity it will double a capacity of an array to keep append time complexity
 // constant.
 func (d *DynamicArray) Add(element interface{}) error {
-	if d.length+1 >= d.capacity {
+	if d.length+1 >= d.Capacity() {
 		if err := d.resize(); err != nil {
 			return err
 		}
@@ -55,22 +56,27 @@ func (d *DynamicArray) Add(element interface{}) error {
 
 func (d *DynamicArray) resize() error {
 	// If capacity is already set to maximum, we can't grow further
-	if d.capacity == maxCapacity {
+	if d.Capacity() == maxCapacity-1 {
 		return ErrorExceededCapacitySize
 	}
 
 	// If capacity is less than a half of maxCapacity value, then double it.
 	// Otherwise, set to maxCapacity.
-	if d.capacity < (maxCapacity >> 1) {
+	if d.Capacity() < (maxCapacity >> 1) {
 		d.capacity <<= 1
 	} else {
-		d.capacity = maxCapacity
+		d.capacity = maxCapacity - 1
 	}
 
-	var tempContainer = make([]interface{}, d.capacity)
+	var tempContainer = make([]interface{}, d.Capacity())
 	copy(tempContainer, d.container)
 	d.container = tempContainer
 	return nil
+}
+
+// Capacity returns a number of elements in an array.
+func (d *DynamicArray) Capacity() int32 {
+	return d.capacity
 }
 
 // Find performs linear search on an array.
@@ -138,12 +144,12 @@ func (d *DynamicArray) Size() int32 {
 }
 
 // NewDynamicArray creates a new dynamic array with default capacity = 4.
-func NewDynamicArray() (*DynamicArray, error) {
+func NewDynamicArray() *DynamicArray {
 	return &DynamicArray{
 		container: make([]interface{}, defaultCapacity),
 		length:    0,
 		capacity:  defaultCapacity,
-	}, nil
+	}
 }
 
 // NewDynamicArrayWithCapacity creates a new dynamic array with provided capacity
