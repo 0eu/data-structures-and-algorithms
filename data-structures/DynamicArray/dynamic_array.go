@@ -2,26 +2,25 @@ package dynamicarray
 
 import (
 	"errors"
-	"math"
 )
 
 const (
 	defaultCapacity int32 = 1 << 2
-	maxCapacity     int32 = math.MaxInt32
+	maxCapacity     int32 = 1 << 10
 )
 
 var (
 	// ErrorIndexOutOfRange will be returned if a given index is out of range a container.
-	ErrorIndexOutOfRange = errors.New("An array's index should be >= 0 and < length of an array")
+	ErrorIndexOutOfRange = errors.New("an array's index should be >= 0 and < length of an array")
 
-	// ErrorElementIsNotInArray will be returned if a needed elements is not in a container.
-	ErrorElementIsNotInArray = errors.New("There is no a needed element in an array")
+	// ErrorElementNotFound will be returned if a needed elements is not in a container.
+	ErrorElementNotFound = errors.New("there is no a needed element in an array")
 
-	// ErrorExceededCapacitySize will be returned if a given capacity is out of range.
-	ErrorExceededCapacitySize = errors.New("Capacity size should be between and < 2147483647")
+	// ErrorExceededCapacity will be returned if a given capacity is out of range.
+	ErrorExceededCapacity = errors.New("capacity size should be between 1 and < 1024")
 )
 
-// Array is an
+// Array is an ADT.
 type Array interface {
 	Add(int32) error
 	Capacity() int32
@@ -56,8 +55,8 @@ func (d *DynamicArray) Add(element interface{}) error {
 
 func (d *DynamicArray) resize() error {
 	// If capacity is already set to maximum, we can't grow further
-	if d.Capacity() == maxCapacity-1 {
-		return ErrorExceededCapacitySize
+	if d.Capacity() == maxCapacity {
+		return ErrorExceededCapacity
 	}
 
 	// If capacity is less than a half of maxCapacity value, then double it.
@@ -65,7 +64,7 @@ func (d *DynamicArray) resize() error {
 	if d.Capacity() < (maxCapacity >> 1) {
 		d.capacity <<= 1
 	} else {
-		d.capacity = maxCapacity - 1
+		d.capacity = maxCapacity
 	}
 
 	var tempContainer = make([]interface{}, d.Capacity())
@@ -86,7 +85,7 @@ func (d *DynamicArray) Find(element interface{}) (int32, error) {
 			return int32(index), nil
 		}
 	}
-	return 0, ErrorElementIsNotInArray
+	return 0, ErrorElementNotFound
 }
 
 // Get returns an element by a given index.
@@ -124,7 +123,7 @@ func (d *DynamicArray) RemoveAt(index int32) error {
 
 // Reverse an array using two pointers approach.
 func (d *DynamicArray) Reverse() {
-	for i, j := 0, int(d.length); i < j; i, j = i+1, j-1 {
+	for i, j := 0, int(d.length)-1; i < j; i, j = i+1, j-1 {
 		d.container[i], d.container[j] = d.container[j], d.container[i]
 	}
 }
@@ -167,7 +166,7 @@ func NewDynamicArrayWithCapacity(capacity int32) (*DynamicArray, error) {
 
 func checkCapacity(capacity int32) error {
 	if capacity <= 0 || capacity >= maxCapacity {
-		return ErrorExceededCapacitySize
+		return ErrorExceededCapacity
 	}
 	return nil
 }
