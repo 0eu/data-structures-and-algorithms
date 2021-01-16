@@ -1,5 +1,6 @@
 # Algorithms & Data Structures
 [![codecov](https://codecov.io/gh/0eu/data-structures-and-algorithms/branch/main/graph/badge.svg?token=239H4VIYK9)](https://codecov.io/gh/0eu/data-structures-and-algorithms)
+
 The purpose of the repository is to learn more about implementation variety algorithms and data structures.
 
 ## Data Structures
