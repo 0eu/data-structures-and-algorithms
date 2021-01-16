@@ -2,7 +2,7 @@
 The purpose of the repository is to learn more about implementation variety algorithms and data structures.
 
 ## Data Structures
-- [ ] Dynamic Array
+- [x] Dynamic Array
 - [ ] Linked List 
 - [ ] Stack 
 - [ ] Queue 
