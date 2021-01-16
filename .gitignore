@@ -17,3 +17,6 @@
 
 # MacOS specific
 .DS_Store
+
+# Goland
+.idea/
