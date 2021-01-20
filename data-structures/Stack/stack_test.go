@@ -75,16 +75,19 @@ func TestPop(t *testing.T) {
 		_ = stack.Push(1)
 		_ = stack.Push(2)
 		_ = stack.Push(3)
+		assertLength(t, stack, 3)
 
 		actual, err := stack.Pop()
 
 		assertError(t, err, nil)
 		assertEqual(t, actual, 3)
+		assertLength(t, stack, 2)
 
 		actual, err = stack.Pop()
 
 		assertError(t, err, nil)
 		assertEqual(t, actual, 2)
+		assertLength(t, stack, 1)
 	})
 
 	t.Run("Pop should throw an error on empty stack", func(t *testing.T) {

@@ -60,6 +60,7 @@ func (s *LinkedListStack) Pop() (interface{}, error) {
 		return nil, err
 	} else {
 		s.container.Remove(lastElement)
+		s.length--
 		return lastElement.Value, nil
 	}
 }
