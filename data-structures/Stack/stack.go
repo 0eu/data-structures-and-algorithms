@@ -62,12 +62,25 @@ func (s *LinkedListStack) Size() int {
 }
 
 func (s *LinkedListStack) Pop() (interface{}, error) {
-	return 0, nil
+	if lastElement, err := s.peek(); err != nil {
+		return nil, err
+	} else {
+		s.container.Remove(lastElement)
+		return lastElement.Value, nil
+	}
 }
 
-func (s *LinkedListStack) Peek() (interface{}, error) {
+func (s *LinkedListStack) peek() (*list.Element, error) {
 	if s.IsEmpty() {
 		return nil, ErrorEmptyStack
 	}
-	return s.container.Back().Value, nil
+	return s.container.Back(), nil
+}
+
+func (s *LinkedListStack) Peek() (interface{}, error) {
+	if element, err := s.peek(); err != nil {
+		return nil, err
+	} else {
+		return element.Value, nil
+	}
 }
