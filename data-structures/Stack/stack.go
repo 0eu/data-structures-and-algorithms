@@ -44,17 +44,11 @@ func (s *LinkedListStack) Push(element interface{}) error {
 }
 
 func (s *LinkedListStack) IsFull() bool {
-	if s.length < s.capacity {
-		return false
-	}
-	return true
+	return s.length >= s.capacity
 }
 
 func (s *LinkedListStack) IsEmpty() bool {
-	if s.length == 0 {
-		return true
-	}
-	return false
+	return s.length == 0
 }
 
 func (s *LinkedListStack) Size() int {
