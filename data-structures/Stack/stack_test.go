@@ -68,3 +68,30 @@ func TestPeek(t *testing.T) {
 		assertError(t, err, ErrorEmptyStack)
 	})
 }
+
+func TestPop(t *testing.T) {
+	t.Run("Pop should return first element", func(t *testing.T) {
+		stack := NewLinkedListStack(5)
+		stack.Push(1)
+		stack.Push(2)
+		stack.Push(3)
+
+		actual, err := stack.Pop()
+
+		assertError(t, err, nil)
+		assertEqual(t, actual, 3)
+
+		actual, err = stack.Pop()
+
+		assertError(t, err, nil)
+		assertEqual(t, actual, 2)
+	})
+
+	t.Run("Pop should throw an error on empty stack", func(t *testing.T) {
+		stack := NewLinkedListStack(5)
+
+		_, err := stack.Pop()
+
+		assertError(t, err, ErrorEmptyStack)
+	})
+}
