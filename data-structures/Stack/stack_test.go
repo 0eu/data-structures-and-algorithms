@@ -50,9 +50,9 @@ func TestPush(t *testing.T) {
 func TestPeek(t *testing.T) {
 	t.Run("Peek should return first element", func(t *testing.T) {
 		stack := NewLinkedListStack(5)
-		stack.Push(1)
-		stack.Push(2)
-		stack.Push(3)
+		_ = stack.Push(1)
+		_ = stack.Push(2)
+		_ = stack.Push(3)
 
 		actual, err := stack.Peek()
 
@@ -72,9 +72,9 @@ func TestPeek(t *testing.T) {
 func TestPop(t *testing.T) {
 	t.Run("Pop should return first element", func(t *testing.T) {
 		stack := NewLinkedListStack(5)
-		stack.Push(1)
-		stack.Push(2)
-		stack.Push(3)
+		_ = stack.Push(1)
+		_ = stack.Push(2)
+		_ = stack.Push(3)
 
 		actual, err := stack.Pop()
 

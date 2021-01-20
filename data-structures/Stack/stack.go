@@ -1,7 +1,7 @@
 package stack
 
 import (
-	list "container/list"
+	"container/list"
 	"errors"
 )
 
