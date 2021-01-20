@@ -24,77 +24,87 @@ func assertEqual(t *testing.T, actual, expected interface{}) {
 	}
 }
 
+func initStacks(t *testing.T, size int) []Stack {
+	t.Helper()
+	return []Stack{
+		NewLinkedListStack(size),
+		NewArrayStack(size),
+	}
+}
+
 func TestPush(t *testing.T) {
 	t.Run("Push should put an element onto a stack", func(t *testing.T) {
-		stack := NewLinkedListStack(1)
+		for _, stack := range initStacks(t, 1) {
+			_ = stack.Push(1)
 
-		_ = stack.Push(1)
-
-		assertLength(t, stack, 1)
+			assertLength(t, stack, 1)
+		}
 	})
 
 	t.Run("Push should exceeded a stack's capacity", func(t *testing.T) {
-		stack := NewLinkedListStack(1)
+		for _, stack := range initStacks(t, 1) {
+			err := stack.Push(1)
 
-		err := stack.Push(1)
+			assertError(t, err, nil)
 
-		assertError(t, err, nil)
+			err = stack.Push(1)
 
-		err = stack.Push(1)
-
-		assertError(t, err, ErrorExceededCapacity)
-		assertLength(t, stack, 1)
+			assertError(t, err, ErrorExceededCapacity)
+			assertLength(t, stack, 1)
+		}
 	})
 }
 
 func TestPeek(t *testing.T) {
 	t.Run("Peek should return first element", func(t *testing.T) {
-		stack := NewLinkedListStack(5)
-		_ = stack.Push(1)
-		_ = stack.Push(2)
-		_ = stack.Push(3)
+		for _, stack := range initStacks(t, 5) {
+			_ = stack.Push(1)
+			_ = stack.Push(2)
+			_ = stack.Push(3)
 
-		actual, err := stack.Peek()
+			actual, err := stack.Peek()
 
-		assertError(t, err, nil)
-		assertEqual(t, actual, 3)
+			assertError(t, err, nil)
+			assertEqual(t, actual, 3)
+		}
 	})
 
 	t.Run("Peek should throw an error on empty stack", func(t *testing.T) {
-		stack := NewLinkedListStack(5)
+		for _, stack := range initStacks(t, 5) {
+			_, err := stack.Peek()
 
-		_, err := stack.Peek()
-
-		assertError(t, err, ErrorEmptyStack)
+			assertError(t, err, ErrorEmptyStack)
+		}
 	})
 }
 
 func TestPop(t *testing.T) {
 	t.Run("Pop should return first element", func(t *testing.T) {
-		stack := NewLinkedListStack(5)
-		_ = stack.Push(1)
-		_ = stack.Push(2)
-		_ = stack.Push(3)
-		assertLength(t, stack, 3)
+		for _, stack := range initStacks(t, 5) {
+			_ = stack.Push(1)
+			_ = stack.Push(2)
+			_ = stack.Push(3)
+			assertLength(t, stack, 3)
 
-		actual, err := stack.Pop()
+			actual, err := stack.Pop()
 
-		assertError(t, err, nil)
-		assertEqual(t, actual, 3)
-		assertLength(t, stack, 2)
+			assertError(t, err, nil)
+			assertEqual(t, actual, 3)
+			assertLength(t, stack, 2)
 
-		actual, err = stack.Pop()
+			actual, err = stack.Pop()
 
-		assertError(t, err, nil)
-		assertEqual(t, actual, 2)
-		assertLength(t, stack, 1)
+			assertError(t, err, nil)
+			assertEqual(t, actual, 2)
+			assertLength(t, stack, 1)
+		}
 	})
 
 	t.Run("Pop should throw an error on empty stack", func(t *testing.T) {
-		stack := NewLinkedListStack(5)
+		for _, stack := range initStacks(t, 5) {
+			_, err := stack.Pop()
 
-		_, err := stack.Pop()
-
-		assertError(t, err, ErrorEmptyStack)
+			assertError(t, err, ErrorEmptyStack)
+		}
 	})
 }
