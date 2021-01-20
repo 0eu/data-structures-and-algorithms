@@ -6,7 +6,7 @@ The purpose of the repository is to learn more about implementation variety algo
 ## Data Structures
 - [x] Dynamic Array
 - [ ] Linked List 
-- [ ] Stack 
+- [x] Stack 
 - [ ] Queue 
 - [ ] Priority Queue 
 - [ ] Union Find 
