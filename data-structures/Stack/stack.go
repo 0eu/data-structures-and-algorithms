@@ -7,6 +7,7 @@ import (
 
 var (
 	ErrorExceededCapacity = errors.New("capacity is exceeded")
+	ErrorEmptyStack       = errors.New("can't perform pop, peek on empty stack")
 )
 
 // Stack is an ADT.
@@ -65,5 +66,8 @@ func (s *LinkedListStack) Pop() (interface{}, error) {
 }
 
 func (s *LinkedListStack) Peek() (interface{}, error) {
-	return 0, nil
+	if s.IsEmpty() {
+		return nil, ErrorEmptyStack
+	}
+	return s.container.Back().Value, nil
 }
