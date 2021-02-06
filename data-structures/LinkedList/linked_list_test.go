@@ -38,3 +38,17 @@ func TestLinkedList_Append(t *testing.T) {
 		assertEqual(t, list.Tail.Value, 13)
 	})
 }
+
+func TestLinkedList_Prepend(t *testing.T) {
+	t.Run("Prepend adds elements to the front of a list", func(t *testing.T) {
+		list := NewLinkedList()
+
+		list.Prepend(10)
+		list.Append(12)
+		list.Prepend(13)
+
+		assertLength(t, list, 3)
+		assertEqual(t, list.Head.Value, 13)
+		assertEqual(t, list.Tail.Value, 12)
+	})
+}
