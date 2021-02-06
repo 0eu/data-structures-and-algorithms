@@ -44,6 +44,7 @@ func (l *LinkedList) Append(value interface{}) {
 	l.size++
 }
 
+// Prepend adds an element to the front of a list.
 func (l *LinkedList) Prepend(value interface{}) {
 	newNode := &Node{Value: value, Next: l.head}
 	if l.head != nil {
@@ -54,6 +55,7 @@ func (l *LinkedList) Prepend(value interface{}) {
 	l.size++
 }
 
+// PeekFirst takes first element of a list. If a list is empty returns an error.
 func (l *LinkedList) PeekFirst() (interface{}, error) {
 	if l.head != nil {
 		return l.head.Value, nil
@@ -61,6 +63,7 @@ func (l *LinkedList) PeekFirst() (interface{}, error) {
 	return nil, ErrorEmptyList
 }
 
+// PeekLast takes last element of a list. If a list is empty returns an error.
 func (l *LinkedList) PeekLast() (interface{}, error) {
 	if l.tail != nil {
 		return l.tail.Value, nil
