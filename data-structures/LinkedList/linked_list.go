@@ -67,3 +67,15 @@ func (l *LinkedList) PeekLast() (interface{}, error) {
 	}
 	return nil, ErrorEmptyList
 }
+
+// Count returns a number of times a given value is occurred in a list.
+func (l *LinkedList) Count(value interface{}) int {
+	current, count := l.head, 0
+	for current != nil {
+		if current.Value == value {
+			count++
+		}
+		current = current.Next
+	}
+	return count
+}

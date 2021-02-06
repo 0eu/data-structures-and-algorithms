@@ -56,3 +56,17 @@ func TestLinkedList_Prepend(t *testing.T) {
 		assertEqual(t, last, 12)
 	})
 }
+
+func TestLinkedList_Count(t *testing.T) {
+	list := NewLinkedList()
+	list.Append(10)
+	list.Append(12)
+	list.Append(12)
+	list.Append(12)
+	list.Append(12)
+	list.Append(13)
+
+	count := list.Count(12)
+
+	assertEqual(t, count, 4)
+}
