@@ -37,3 +37,13 @@ func (l *LinkedList) Append(value interface{}) {
 	}
 	l.size++
 }
+
+func (l *LinkedList) Prepend(value interface{}) {
+	newNode := &Node{Value: value, Next: l.Head}
+	if l.Head != nil {
+		l.Head = newNode
+	} else {
+		l.Head, l.Tail = newNode, newNode
+	}
+	l.size++
+}
