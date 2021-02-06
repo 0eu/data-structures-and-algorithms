@@ -32,10 +32,12 @@ func TestLinkedList_Append(t *testing.T) {
 		list.Append(10)
 		list.Append(12)
 		list.Append(13)
+		first, _ := list.PeekFirst()
+		last, _ := list.PeekLast()
 
 		assertLength(t, list, 3)
-		assertEqual(t, list.Head.Value, 10)
-		assertEqual(t, list.Tail.Value, 13)
+		assertEqual(t, first, 10)
+		assertEqual(t, last, 13)
 	})
 }
 
@@ -46,9 +48,11 @@ func TestLinkedList_Prepend(t *testing.T) {
 		list.Prepend(10)
 		list.Append(12)
 		list.Prepend(13)
+		first, _ := list.PeekFirst()
+		last, _ := list.PeekLast()
 
 		assertLength(t, list, 3)
-		assertEqual(t, list.Head.Value, 13)
-		assertEqual(t, list.Tail.Value, 12)
+		assertEqual(t, first, 13)
+		assertEqual(t, last, 12)
 	})
 }
