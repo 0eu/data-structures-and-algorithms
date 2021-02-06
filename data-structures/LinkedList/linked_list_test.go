@@ -17,10 +17,37 @@ func assertEqual(t *testing.T, actual, expected interface{}) {
 	}
 }
 
+func assertError(t *testing.T, actual, expected error) {
+	t.Helper()
+	if actual != expected {
+		t.Errorf("expected error %s, but got: %s", expected, actual)
+	}
+}
+
 func TestNewLinkedList(t *testing.T) {
 	t.Run("Build a linked list", func(t *testing.T) {
 		list := NewLinkedList()
 
+		assertLength(t, list, 0)
+	})
+}
+
+func TestLinkedList_Peek(t *testing.T) {
+	t.Run("PeekFirst throws an error on an empty list", func(t *testing.T) {
+		list := NewLinkedList()
+
+		_, err := list.PeekFirst()
+
+		assertError(t, err, ErrorEmptyList)
+		assertLength(t, list, 0)
+	})
+
+	t.Run("PeekLast throws an error on an empty list", func(t *testing.T) {
+		list := NewLinkedList()
+
+		_, err := list.PeekLast()
+
+		assertError(t, err, ErrorEmptyList)
 		assertLength(t, list, 0)
 	})
 }
