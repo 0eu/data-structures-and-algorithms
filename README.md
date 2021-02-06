@@ -7,7 +7,7 @@ The purpose of the repository is to learn more about implementation variety algo
 - [x] Dynamic Array
 - [ ] Linked List 
 - [x] Stack 
-- [ ] Queue 
+- [x] Queue 
 - [ ] Priority Queue 
 - [ ] Union Find 
 - [ ] Binary Search Tree
