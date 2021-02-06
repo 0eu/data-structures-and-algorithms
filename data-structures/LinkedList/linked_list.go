@@ -29,8 +29,8 @@ func (l *LinkedList) Size() int {
 
 // Append adds an element to the end of a list.
 func (l *LinkedList) Append(value interface{}) {
-	current, newNode := l.Head, &Node{Value: value, Next: nil}
-	if current != nil {
+	newNode := &Node{Value: value, Next: nil}
+	if l.Head != nil {
 		l.Tail.Next, l.Tail = newNode, newNode
 	} else {
 		l.Head, l.Tail = newNode, newNode
