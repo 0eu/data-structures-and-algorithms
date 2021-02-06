@@ -55,7 +55,7 @@ func (l *LinkedList) Prepend(value interface{}) {
 }
 
 func (l *LinkedList) PeekFirst() (interface{}, error) {
-	if l.tail != nil {
+	if l.head != nil {
 		return l.head.Value, nil
 	}
 	return nil, ErrorEmptyList
