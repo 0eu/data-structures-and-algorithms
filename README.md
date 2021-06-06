@@ -5,7 +5,7 @@ The purpose of the repository is to learn more about implementation variety algo
 
 ## Data Structures
 - [x] Dynamic Array
-- [ ] Linked List 
+- [x] Linked List 
 - [x] Stack 
 - [x] Queue 
 - [ ] Priority Queue 
@@ -14,7 +14,7 @@ The purpose of the repository is to learn more about implementation variety algo
 - [ ] Hash Table
 - [ ] AVL Tree 
 - [ ] Indexed Priority Queue
-- [ ] Sparses Tables 
+- [ ] Sparse Tables 
 
 ## Algorithms 
 - [ ] Breadth-First Search
